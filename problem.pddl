@@ -74,44 +74,76 @@
 
         ; Location must be inspected with tool
         (inspection_with_tool node-a camera)
+        (inspection_with_tool node-a lidar)
+        (inspection_with_tool node-a thermal-sensor)
+        
         (inspection_with_tool node-b lidar)
         (inspection_with_tool node-c camera)
-
-        (inspection_with_tool node-d camera)
         (inspection_with_tool node-d lidar)
-
         (inspection_with_tool node-e camera)
-        (inspection_with_tool node-e lidar)
-        (inspection_with_tool node-e thermal-sensor)
 
         (inspection_with_tool node-f thermal-sensor)
+        (inspection_with_tool node-f lidar)
+        
         (inspection_with_tool node-g camera)
-        (inspection_with_tool node-h lidar)
+        (inspection_with_tool node-h camera)
 
         ; Locations that must be inspected
         (location_must_be_inspected node-a)
         (location_must_be_inspected node-b)
         (location_must_be_inspected node-c)
+        ;(location_must_be_inspected node-d)
+        (location_must_be_inspected node-e)
+        (location_must_be_inspected node-f)
+        (location_must_be_inspected node-g)
+        ;(location_must_be_inspected node-h)
 
         ; Data Collection/Processing counters initialization
         (= (acquired_data image-data node-a) 0)
         (= (acquired_data worker-activity node-a) 0)
+        (= (acquired_data point-cloud node-a) 0)
+        (= (acquired_data structural-integrity node-a) 0)
+        (= (acquired_data thermal-data node-a) 0)
+        (= (acquired_data temperature-variation node-a) 0)
 
         (= (acquired_data point-cloud node-b) 0)
-        (= (acquired_data structural-integrity node-a) 0)
+        (= (acquired_data structural-integrity node-b) 0)
 
         (= (acquired_data image-data node-c) 0)
         (= (acquired_data worker-activity node-c) 0)
 
+        (= (acquired_data point-cloud node-d) 0)
+        (= (acquired_data structural-integrity node-d) 0)
+
+        (= (acquired_data image-data node-e) 0)
+        (= (acquired_data worker-activity node-e) 0)
+        
+        (= (acquired_data thermal-data node-f) 0)
+        (= (acquired_data temperature-variation node-f) 0)
+        (= (acquired_data point-cloud node-f) 0)
+        (= (acquired_data structural-integrity node-f) 0)
+        
+        (= (acquired_data image-data node-g) 0)
+        (= (acquired_data worker-activity node-g) 0)
+        
+        (= (acquired_data image-data node-h) 0)
+        (= (acquired_data worker-activity node-h) 0)
+        
     )
 
 
     (:goal
         (and 
             ; Data Collection
-            (= (acquired_data image-data node-a) 2)
+            (= (acquired_data image-data node-a) 3)
+            (= (acquired_data point-cloud node-a) 2)
+            (= (acquired_data thermal-data node-a) 1)
             (= (acquired_data point-cloud node-b) 1)
             (= (acquired_data image-data node-c) 1)
+            (= (acquired_data image-data node-e) 1)
+            (= (acquired_data point-cloud node-f) 1)
+            (= (acquired_data thermal-data node-f) 1)
+            (= (acquired_data image-data node-g) 1)
             ; Reporting
             (is_free_of_reports robot-x)
         )

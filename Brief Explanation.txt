@@ -1,0 +1,19 @@
+A valid plan is generated with solver ENHSP -- 2020 version.
+
+A few considerations:
+
+- The plan uses ALL of the things the robot knows.
+- Six (6) of the (8) nodes were selected for inspection.
+- Data processing happens as soon as data is acquired.
+- It is assumed that multiple instances of the same data is bundled before formatting.
+- As clearly stated by the instruction, reporting happens "At the end of each inspection session". 
+	- The sentence "after the robot have completed their tasks" was ambiguous because it did not specify
+	if it refers to "ALL of their tasks", or "their tasks after EACH inspection".
+	- Due to the mentioned above, updating and closing the BIM session happens after every inspection.
+- A type ROBOT was used throughout the domain to be able to use the domain for more than 1 robot.
+
+Optional:
+
+- A multiple robot (2+) plan can work: 
+	- It would make more sense if one robot does not contain all the tools.
+	- However: The actions would be parallel, so reading a generating plan could be confusing.

@@ -40,8 +40,8 @@
         (is_free_of_reports ?r)
         ; The robot ?r updated the database from location ?l
         (updated_database ?r ?l)
-        ; The session was closed by robot ?r on location ?l
-
+        ; Unprocessed data ?d of robot ?r
+        (unprocessed_data ?d - DATA ?r - ROBOT)
 
         ; ******************
         ; Purely Initial State Fluents 
@@ -156,6 +156,7 @@
             (increase (acquired_data ?d ?l) 1)
             (acquired_data_by ?d ?l ?r)
             (has_unprocessed_data ?r)
+            (unprocessed_data ?d ?r)
             (not (is_free_of_reports ?r))
         )
     )
@@ -166,12 +167,13 @@
         :parameters (?r - ROBOT ?l - LOCATION ?d_old - DATA ?d_new - DATA)
         :precondition (and
             (at_robot ?r ?l)
-            (acquired_data_by ?d_old ?l ?r)
+            (unprocessed_data ?d_old ?r)
             (lidar_data_conversion ?d_old ?d_new)
         )
         :effect (and 
             (increase (acquired_data ?d_new ?l) 1)
             (acquired_data_by ?d_new ?l ?r)
+            (not (unprocessed_data ?d_old ?r))
             (not (has_unprocessed_data ?r))
         )
     )
@@ -180,12 +182,13 @@
         :parameters (?r - ROBOT ?l - LOCATION ?d_old - DATA ?d_new - DATA)
         :precondition (and
             (at_robot ?r ?l)
-            (acquired_data_by ?d_old ?l ?r)
+            (unprocessed_data ?d_old ?r)
             (camera_data_conversion ?d_old ?d_new)
         )
         :effect (and 
             (increase (acquired_data ?d_new ?l) 1)
             (acquired_data_by ?d_new ?l ?r)
+            (not (unprocessed_data ?d_old ?r))
             (not (has_unprocessed_data ?r))
         )
     )
@@ -194,12 +197,13 @@
         :parameters (?r - ROBOT ?l - LOCATION ?d_old - DATA ?d_new - DATA)
         :precondition (and
             (at_robot ?r ?l)
-            (acquired_data_by ?d_old ?l ?r)
+            (unprocessed_data ?d_old ?r)
             (thermal_data_conversion ?d_old ?d_new)
         )
         :effect (and 
             (increase (acquired_data ?d_new ?l) 1)
             (acquired_data_by ?d_new ?l ?r)
+            (not (unprocessed_data ?d_old ?r))
             (not (has_unprocessed_data ?r))
         )
     )
